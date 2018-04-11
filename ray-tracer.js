@@ -1,4 +1,4 @@
-// CS 174a Project 3 Ray Tracer Skeleton
+// CS 174a Project 3 Ray Tracer
 
 var mult_3_coeffs = function( a, b ) { return [ a[0]*b[0], a[1]*b[1], a[2]*b[2] ]; };       // Convenient way to combine two color-reducing vectors
 
