@@ -1,4 +1,7 @@
 // CS 174a Project 3 Ray Tracer
+// Alan Tokashiki
+// UID: 904203080
+// Spring 2017
 
 var mult_3_coeffs = function( a, b ) { return [ a[0]*b[0], a[1]*b[1], a[2]*b[2] ]; };       // Convenient way to combine two color-reducing vectors
 
@@ -7,6 +10,7 @@ Declare_Any_Class( "Ball",              // The following data members of a ball 
       { this.define_data_members( { position, size, color, k_a, k_d, k_s, n, k_r, k_refract, refract_index} );
  
   // TODO:  Finish filling in data members, using data already present in the others.
+  // COMPLETE
         this.model_transform = mult(identity(), mult(translation(this.position), scale(this.size)));
 		
 		//this.scale_mat = mult(identity(), mult(scale(this.size)));
@@ -19,7 +23,8 @@ Declare_Any_Class( "Ball",              // The following data members of a ball 
   //        value along the ray, and a normal), updates it if needed, and returns it.  Only counts intersections that are at least a given distance ahead along the ray.
   //        Tip:  Once intersect() is done, call it in trace() as you loop through all the spheres until you've found the ray's nearest available intersection.  Simply
   //        return a dummy color if the intersection tests positiv.  This will show the spheres' outlines, giving early proof that you did intersect() correctly.
-		
+	// COMPLETE
+	
 		// Put ray into ball's CS
 		var iray_dir = mult_vec(this.inv_transform, ray.dir);
 		var iray_origin = mult_vec(this.inv_transform, ray.origin);
@@ -135,6 +140,8 @@ Declare_Any_Class( "Ray_Tracer",
     //        or k_refract, multiplied by the "complement" (1-alpha) of the Phong color this recursion.  Use argument is_primary to indicate whether this is the original
     //        ray or a recursion.  Use the argument light_to_check when a recursive call to trace() is for computing a shadow ray.
         */
+		// COMPLETE
+		
         if( length( color_remaining ) < 0.3 )    return Color( 0, 0, 0, 1 );  // Each recursion, check if there's any remaining potential for the pixel to be brightened.
 
         var closest_intersection = { distance: Number.POSITIVE_INFINITY, ball: null, normal: null }    // An empty intersection object
@@ -186,7 +193,8 @@ Declare_Any_Class( "Ray_Tracer",
 			
 			
 			if (this.trace(light_ray, vec3(1,1,1), true, lite) == 'shadow') {
-				// uhhhh check this it sesems to be working as intended....
+				// uhhhh basically just ignore a 'shadow' ray
+				// From TA's Piazza post about these... possibly erred original project framework
 				continue;
 			}
 			
@@ -221,7 +229,6 @@ Declare_Any_Class( "Ray_Tracer",
 		} // END local illumination
 		
 		
-		// Hi how are you
 		// At this point, the following are sources of color for a pixel
 		// 1. Ambient Glow of Balls
 		// 2. Light sources that are (a) diffused and (b) shined on the Balls
